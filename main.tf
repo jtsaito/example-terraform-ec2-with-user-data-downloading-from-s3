@@ -1,6 +1,3 @@
-# EC2 - Download user data from S3
-
-```
 provider "aws" {
   region = "eu-west-1"
 }
@@ -78,4 +75,3 @@ resource "aws_iam_role_policy" "jts-user-data-test-bucket-reader" {
 data "template_file" "user-data" {
   template = "${file("user-data.sh")}"
 }
-```
