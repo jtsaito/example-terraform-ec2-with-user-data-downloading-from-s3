@@ -16,9 +16,9 @@ resource "aws_s3_bucket" "jts" {
 }
 
 resource "aws_s3_bucket_object" "user-data" {
-	bucket = "${aws_s3_bucket.jts.bucket}"
-  key    = "authorized_keys"
-  source = "authorized_keys"
+	bucket  = "${aws_s3_bucket.jts.bucket}"
+  key     = "authorized_keys"
+  content = "${data.template_file.authorized_keys.rendered}"
 }
 
 # EC2
@@ -74,4 +74,13 @@ resource "aws_iam_role_policy" "jts-user-data-test-bucket-reader" {
 # actual user data
 data "template_file" "user-data" {
   template = "${file("user-data.sh")}"
+}
+
+# actual user data template
+data "template_file" "authorized_keys" {
+  template = "${file("authorized_keys")}"
+
+  vars {
+    tenmanya = "ssh-rsa ..."
+  }
 }
