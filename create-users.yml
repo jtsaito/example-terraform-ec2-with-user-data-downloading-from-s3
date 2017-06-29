@@ -5,8 +5,8 @@ users:
 - name: jsaito
   sudo: ALL=(ALL) NOPASSWD:ALL
   ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxGyfYiuJV/fmyeCL6tAJiRrBb8mXTP6yq3zSULrYjSCeXKjO/g0YrxEjj/eUbe894/zWmJp2IVyU6IMp7Lw2s4OMO+pUYD+NMP5UIl0ZpXJOyb6eodTHiAkeaQ66CZ1zvgwgLyf7oIJNU0Xra3I4i4iwL4jYampli2jFNU/sMa/UXnq2DlXLVyYj1eYhgBKqqBpnaOKNaQK6R1iq3YT4w8r53ZvdV5l5lUNsqLYl4bmZk8DQDETaTDwDLzMLQKrFY4TtPHOkOwzEpj2M25AXQTQPAem+XDXTGJrmp4hPbKLpYt+YEF2JM4gI09HetidKSXBfbQ9rTicqp/nYLLmWD lupin@onepiece
+  - ssh-rsa ...add key here
 
 - name: hugo
   ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxGyfYiuJV/fmyeCL6tAJiRrBb8mXTP6yq3zSULrYjSCeXKjO/g0YrxEjj/eUbe894/zWmJp2IVyU6IMp7Lw2s4OMO+pUYD+NMP5UIl0ZpXJOyb6eodTHiAkeaQ66CZ1zvgwgLyf7oIJNU0Xra3I4i4iwL4jYampli2jFNU/sMa/UXnq2DlXLVyYj1eYhgBKqqBpnaOKNaQK6R1iq3YT4w8r53ZvdV5l5lUNsqLYl4bmZk8DQDETaTDwDLzMLQKrFY4TtPHOkOwzEpj2M25AXQTQPAem+XDXTGJrmp4hPbKLpYt+YEF2JM4gI09HetidKSXBfbQ9rTicqp/nYLLmWD lupin@onepiece
+  - ssh-rsa ...add key here
