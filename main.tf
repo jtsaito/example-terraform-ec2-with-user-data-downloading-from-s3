@@ -18,10 +18,30 @@ resource "aws_s3_bucket" "jts" {
 resource "aws_s3_bucket_object" "user-data" {
 	bucket = "${aws_s3_bucket.jts.bucket}"
   key    = "authorized_keys"
-  source = "authorized_keys"
+  source = "create-users.yml"
+  acl    = "public-read"
 }
 
 # EC2
+
+resource "aws_security_group" "allow_all" {
+  name        = "allow_all"
+  description = "Allow all inbound traffic"
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+}
 
 resource "aws_instance" "jts-user-data-test" {
   ami           = "ami-6d48500b",
@@ -32,6 +52,8 @@ resource "aws_instance" "jts-user-data-test" {
   user_data = "${data.template_file.user-data.rendered}"
 
   key_name = "jsaito"
+
+  security_groups = ["allow_all"]
 }
 
 resource "aws_iam_instance_profile" "jts-user-data-test" {
@@ -73,5 +95,9 @@ resource "aws_iam_role_policy" "jts-user-data-test-bucket-reader" {
 
 # actual user data
 data "template_file" "user-data" {
-  template = "${file("user-data.sh")}"
+  template = "#include\n$${url}"
+
+  vars = {
+		url = "https://s3-eu-west-1.amazonaws.com/babbel-jts-test-user-data-2/authorized_keys"
+  }
 }
