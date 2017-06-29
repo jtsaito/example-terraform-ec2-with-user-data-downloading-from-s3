@@ -80,19 +80,6 @@ data "aws_iam_policy_document" "ec2-assume-role" {
   }
 }
 
-data "aws_iam_policy_document" "jts-user-data-test-bucket" {
-  statement {
-    actions   = ["s3:List*","s3:Get*"]
-    resources = ["arn:aws:s3:::${aws_s3_bucket.jts.bucket}/*"]
-  }
-}
-
-resource "aws_iam_role_policy" "jts-user-data-test-bucket-reader" {
-  name = "user-data-test-bucket-reader"
-  role = "${aws_iam_role.jts-user-data-test.id}"
-  policy = "${data.aws_iam_policy_document.jts-user-data-test-bucket.json}"
-}
-
 # actual user data
 data "template_file" "user-data" {
   template = "#include\n$${url}"
